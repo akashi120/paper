@@ -41,9 +41,9 @@ data_long <- pivot_longer(data, cols = c(Age,Gender,BMI,AlcoholConsumption,Smoki
                                          ,LiverFunctionTest,Diagnosis), names_to = "Variable", values_to = "Value")
 p1 <- ggplot(data_long, aes(x = Variable, y = Value)) +
   geom_boxplot(outlier.colour = "red", colour = "red",outlier.shape = 1) +
-  facet_wrap(~ Variable, scales = "free") + # 使用facets来为每个变量创建单独的图表
-  theme_minimal() + # 使用简约主题
-  theme(axis.text.x = element_blank(), axis.title.x = element_blank(), strip.background = element_blank()) + # 移除不必要的标签和背景
+  facet_wrap(~ Variable, scales = "free") + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.title.x = element_blank(), strip.background = element_blank()) + 
   labs(title = "Boxplots of Variables", y = "Values")
 print(p1)
 
@@ -80,22 +80,7 @@ ggplot(data, aes(x = Age, fill = factor(Diagnosis))) +
                     labels = c("No Disease", "Disease"))
 
 
-# BMI and GeneticRisk
-ggplot(data, aes(x = Smoking , y = GeneticRisk , color = factor(Diagnosis))) +
-  geom_point() +
-  labs(title = "Smoking  vs GeneticRisk  by Diagnosis",
-       x = "Smoking ",
-       y = "GeneticRisk ") +
-  scale_color_manual(values = c("0" = "blue", "1" = "red"), 
-                     labels = c("No Disease", "Disease"))
 
-ggplot(data, aes(x = GeneticRisk, fill = factor(Diagnosis))) +
-  geom_histogram(bins = 20, position = "dodge") +
-  labs(title = "GeneticRisk Distribution by Diagnosis",
-       x = "GeneticRisk",
-       y = "Count") +
-  scale_fill_manual(values = c("0" = "blue", "1" = "red"), 
-                    labels = c("No Disease", "Disease"))
 ##########################################################
 
 ### 
